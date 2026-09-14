@@ -32,4 +32,10 @@ describe("BallotScope API shell", () => {
     expect(response.status).toBe(200);
     expect(await response.json()).toMatchObject({ items: [], status: "not_ready" });
   });
+
+  it("reports adapter boundaries without implying that providers are active", async () => {
+    const response = await worker.fetch(new Request("https://example.test/api/v1/adapters"), env);
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ status: "not_ready", total: 6 });
+  });
 });

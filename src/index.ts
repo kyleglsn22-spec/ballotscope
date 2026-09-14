@@ -1,5 +1,6 @@
 import {
   CONSTITUTIONAL_RULES,
+  ADAPTER_REGISTRY,
   SOURCE_REGISTRY,
   type ApiMeta,
   type EmptyCollection,
@@ -77,6 +78,15 @@ export default {
 
     if (url.pathname === "/api/v1/sources") {
       return json(sources());
+    }
+
+    if (url.pathname === "/api/v1/adapters") {
+      return json({
+        items: ADAPTER_REGISTRY,
+        total: ADAPTER_REGISTRY.length,
+        status: "not_ready",
+        message: "Adapters are present as audited boundaries but are not activated in this environment.",
+      });
     }
 
     if (url.pathname === "/api/v1/races") {

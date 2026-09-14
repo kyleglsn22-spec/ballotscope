@@ -21,6 +21,14 @@ export interface SourceHealth {
   note: string;
 }
 
+export interface AdapterStatus {
+  name: string;
+  sourceType: SourceType;
+  status: "scaffold" | "configured" | "disabled";
+  authentication: "none" | "secret" | "license_review";
+  note: string;
+}
+
 export interface ApiMeta {
   name: "BallotScope";
   apiVersion: "v1";
@@ -128,4 +136,13 @@ export const SOURCE_REGISTRY: readonly SourceHealth[] = [
     parserVersion: null,
     note: "Market snapshots are not model inputs.",
   },
+] as const;
+
+export const ADAPTER_REGISTRY: readonly AdapterStatus[] = [
+  { name: "VoteHub polling adapter", sourceType: "polling", status: "scaffold", authentication: "license_review", note: "Requires endpoint/schema confirmation and attribution review before activation." },
+  { name: "OpenFEC adapter", sourceType: "campaign_finance", status: "scaffold", authentication: "secret", note: "Requires a runtime FEC API key; no key is stored in this repository." },
+  { name: "Census geography adapter", sourceType: "geography", status: "scaffold", authentication: "none", note: "Requires versioned 120th-Congress boundary ingestion and audit." },
+  { name: "MEDSL historical-results adapter", sourceType: "historical_results", status: "scaffold", authentication: "license_review", note: "Requires dataset version and license verification." },
+  { name: "Kalshi market adapter", sourceType: "prediction_market", status: "scaffold", authentication: "none", note: "Public market data is comparison-only and never a model input." },
+  { name: "Polymarket market adapter", sourceType: "prediction_market", status: "scaffold", authentication: "none", note: "Public market data is comparison-only and never a model input." },
 ] as const;

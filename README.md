@@ -35,6 +35,7 @@ The Worker exposes:
 - `GET /health`
 - `GET /api/v1/meta`
 - `GET /api/v1/sources`
+- `GET /api/v1/adapters`
 - `GET /api/v1/races`
 - `GET /api/v1/ledger`
 - `GET /api/v1/forecasts` — explicit not-ready response until an audited model run is configured
