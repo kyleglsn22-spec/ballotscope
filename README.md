@@ -12,6 +12,7 @@ This repository currently provides the auditable data spine, a read-only API she
 - `src/reliability.ts` — stale-source evaluation
 - `src/archive.ts` — content hashing and R2 raw-payload archive primitive
 - `web/` — React MVP interface and build configuration
+- `model/` — dependency-light correlated simulation and cycle-held-out validation core
 - `db/schema.sql` — PostgreSQL/PostGIS append-only schema for the canonical, provenance, evidence, forecast, and ledger layers
 - `db/seed.sql` — non-political development metadata only
 - `tests/` — API, forecast-math, reliability, and archive tests
@@ -25,6 +26,7 @@ npm test
 npm run typecheck
 npm run web:typecheck
 npm run web:build
+python -m unittest discover -s model/tests -v
 npm run dev
 ```
 
