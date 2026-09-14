@@ -6,13 +6,25 @@
   "scripts": {
     "dev": "wrangler dev",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "web:dev": "vite --config web/vite.config.ts",
+    "web:typecheck": "tsc -p web/tsconfig.json --noEmit",
+    "web:build": "vite build --config web/vite.config.ts",
+    "build": "npm run typecheck && npm run web:typecheck && npm run web:build && wrangler deploy --dry-run"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "latest",
     "@cloudflare/vitest-pool-workers": "latest",
+    "@types/node": "^26.5.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
     "typescript": "latest",
+    "vite": "^8.3.0",
     "vitest": "latest",
     "wrangler": "latest"
+  },
+  "dependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   }
 }
